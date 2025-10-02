@@ -1,0 +1,33 @@
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0em 0em 0em;
+  text-align: center; /* helps subtitle centering */
+}
+
+.header-title {
+  font-family: var(--font-chivo);
+  /* fluid size that caps nicely on desktop */
+  font-size: clamp(2rem, 7vw, 5rem);
+  font-weight: 700;
+  color: #6a6791;
+
+  /* keep it one line + tighten */
+  white-space: nowrap;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+/* Subtitle: slightly fluid too */
+.header-subtitle {
+  font-family: var(--font-chivo);
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
+  color: rgb(153, 4, 4);
+}
+
+/* Optional: extra squeeze on very small phones */
+@media (max-width: 360px) {
+  .header-title { font-size: clamp(1.6rem, 8vw, 4rem); }
+}
