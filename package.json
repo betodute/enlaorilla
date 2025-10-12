@@ -4,10 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "prezip": "test -d out || (echo '❌ No out/. Did you set output:\"export\" and run pnpm build?' && exit 1)",
-    "zip-out": "cd out && zip -r -X ../site.zip * -x \"*.DS_Store\" \"__MACOSX\" \"*._*\"",
-    "build-zip": "pnpm build && pnpm prezip && pnpm zip-out"
+    "build": "next build"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
