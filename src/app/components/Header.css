@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 3rem 0rem 0rem 3rem;
+  margin: 3rem 1rem 0rem 3rem;
   height: 100vh;
   text-align: center; /* helps subtitle centering */
 }
@@ -43,6 +43,16 @@ body {
   height: auto;
   border-radius: 0.5em;
   object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .header-image-wrapper { 
+    align-self: center;
+  }
+
+  .header-wrapper {
+    margin: 2rem 2rem 0rem 2rem;
+  }
 }
 
 /* Optional: extra squeeze on very small phones */
