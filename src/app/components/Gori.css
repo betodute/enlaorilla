@@ -2,13 +2,16 @@
    GORI SECTION (full-bleed bg)
    ========================= */
 .gori-section {
-  background-color: #7fa46f; /* full-width background */
+  background-color: #7fa46f;
+  /* full-width background */
   width: 100%;
   display: flex;
-  justify-content: center;   /* centers inner content */
+  justify-content: center;
+  /* centers inner content */
   padding: 2em 0;
   position: relative;
-  overflow: hidden;          /* clips the circle */
+  overflow: hidden;
+  /* clips the circle */
 }
 
 /* =========================
@@ -16,12 +19,14 @@
    ========================= */
 .gori-wrapper {
   display: flex;
-  flex-direction: column;    /* stacked by default */
+  flex-direction: column;
+  /* stacked by default */
   align-items: center;
   gap: 1.75em;
   /* responsive side padding so text never hugs edges */
   padding: clamp(16px, 4vw, 32px);
-  max-width: 1100px;         /* readable line-length cap */
+  max-width: 1100px;
+  /* readable line-length cap */
   width: 100%;
 }
 
@@ -29,10 +34,12 @@
    IMAGE SIDE
    ========================= */
 .gori-image-wrapper {
-  position: relative;        /* anchor for ::before circle */
+  position: relative;
+  /* anchor for ::before circle */
   text-align: center;
   padding: 0.5rem;
-  z-index: 1;                /* keep image/caption above circle */
+  z-index: 1;
+  /* keep image/caption above circle */
 }
 
 /* Decorative orange circle behind the image (perfect circle) */
@@ -53,10 +60,12 @@
 }
 
 .gori-image {
-  position: relative;        /* sits above ::before */
+  position: relative;
+  /* sits above ::before */
   z-index: 1;
   width: 100%;
-  max-width: 360px;          /* balanced default */
+  max-width: 360px;
+  /* balanced default */
   height: auto;
   border-radius: 0.5em;
 }
@@ -74,14 +83,16 @@
    TEXT SIDE
    ========================= */
 .gori-text-wrapper {
-  max-width: 65ch;           /* universal readability cap */
+  max-width: 65ch;
+  /* universal readability cap */
   width: 100%;
 }
 
 .gori-title {
   font-family: var(--font-dellarespira);
-  font-size: clamp(1.6rem, 6vw, 2.6rem); /* larger on small + mid screens */
-  color: #f5f5dc;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  /* larger on small + mid screens */
+  color: #213b52;
   text-align: center;
   margin-bottom: 0.5em;
 }
@@ -92,7 +103,8 @@
   color: #f5f5dc;
   line-height: 1.65;
   text-align: justify;
-  overflow-wrap: anywhere;    /* protects against right cut-off */
+  overflow-wrap: anywhere;
+  /* protects against right cut-off */
   hyphens: auto;
   /* gentle inner margins on small & mid widths */
   margin-inline: clamp(0px, 2vw, 24px);
@@ -108,14 +120,33 @@
   }
 
   .gori-image {
-    max-width: 260px;        /* make ellipse more prominent on phones */
+    max-width: 260px;
+    /* make ellipse more prominent on phones */
   }
 
   .gori-image-wrapper::before {
     width: clamp(260px, 75vw, 420px);
     height: clamp(260px, 75vw, 420px);
-    top: -60px;              /* slight top cutoff */
-    left: -160px;            /* stronger left cutoff */
+    top: -60px;
+    /* slight top cutoff */
+    left: -160px;
+    /* stronger left cutoff */
+  }
+
+  .gori-text-content {
+    width: 100%;
+    max-width: 90%;                 /* keeps text narrower than full width */
+    margin-left: auto;
+    margin-right: auto;             /* balances both sides evenly */
+    font-size: 1em;
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+  /* Optional: small reduction of wrapper padding for symmetry */
+  .gori-wrapper {
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }
 
@@ -132,7 +163,8 @@
   }
 
   .gori-image {
-    max-width: 320px;        /* balance portrait vs circle */
+    max-width: 320px;
+    /* balance portrait vs circle */
   }
 
   .gori-image-wrapper::before {
@@ -143,12 +175,18 @@
   }
 
   .gori-title {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    text-align: left;
+    padding-left: 0;
   }
 
   .gori-text-content {
     margin-inline: clamp(8px, 3vw, 32px);
-    line-height: 1.7;
+  }
+
+  /* keep your gutters */
+  /* If you want perfect alignment, match the title’s margin to the paragraph’s: */
+  .gori-title {
+    margin-inline: clamp(8px, 3vw, 32px);
   }
 }
 
@@ -158,7 +196,6 @@
    ========================= */
 @media (min-width: 1200px) {
   .gori-wrapper {
-    /* predictable columns + gutters */
     display: grid;
     /* gutter | image | gap | text | gutter */
     grid-template-columns:
@@ -170,14 +207,32 @@
     align-items: start;
     column-gap: 0;
     row-gap: 1.5em;
-    padding: 0;               /* gutters are grid columns now */
+    padding: 0;
     max-width: min(100%, 1200px);
     margin: 0 auto;
   }
 
   .gori-image-wrapper { grid-column: 2; text-align: right; padding-right: 0; }
   .gori-text-wrapper  { grid-column: 4; max-width: 70ch; text-align: left; }
-  .gori-title         { text-align: left; }
+
+  /* ⬇️ Ensure BOTH start at the exact same left edge */
+  .gori-title {
+    text-align: left;
+    margin: 0 0 0.5em 0;  /* no left margin */
+    padding-left: 0;      /* no left padding */
+  }
+
+  .gori-text-content {
+    margin: 0;            /* no side margins on desktop */
+    padding-left: 0;      /* no left padding */
+  }
+
+  .gori-text-wrapper {
+    margin-left: 2em;
+  }
+
+  /* (Remove any previous optical nudges) */
+  /* .gori-title, .gori-text-content { padding-left: 0.15em; }  <-- delete */
 
   .gori-image { max-width: 400px; }
 
@@ -189,13 +244,12 @@
   }
 }
 
+
 /* =========================
    ULTRA-WIDE POLISH (1400px+)
    ========================= */
 @media (min-width: 1400px) {
-  .gori-wrapper { padding: 2em 5vw; }
+  .gori-wrapper {
+    padding: 2em 5vw;
+  }
 }
-
-
-
-
