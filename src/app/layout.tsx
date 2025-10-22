@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { archivo, museoModerno, faustina, chivo, labrada, proximanova} from "./fonts";
+import { archivo, museoModerno, faustina, chivo, labrada, dellaRespira, proximanova} from "./fonts";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} ${museoModerno.variable} ${faustina.variable} ${chivo.variable} ${labrada.variable} ${proximanova.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} ${museoModerno.variable} ${faustina.variable} ${chivo.variable} ${labrada.variable} ${dellaRespira.variable} ${proximanova.variable} antialiased`}
       >
         {children}
       </body>

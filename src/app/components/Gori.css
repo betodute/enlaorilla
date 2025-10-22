@@ -1,0 +1,201 @@
+/* =========================
+   GORI SECTION (full-bleed bg)
+   ========================= */
+.gori-section {
+  background-color: #7fa46f; /* full-width background */
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* centers inner content */
+  padding: 2em 0;
+  position: relative;
+  overflow: hidden;          /* clips the circle */
+}
+
+/* =========================
+   CONTENT WRAPPER (centered, mobile-first)
+   ========================= */
+.gori-wrapper {
+  display: flex;
+  flex-direction: column;    /* stacked by default */
+  align-items: center;
+  gap: 1.75em;
+  /* responsive side padding so text never hugs edges */
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 1100px;         /* readable line-length cap */
+  width: 100%;
+}
+
+/* =========================
+   IMAGE SIDE
+   ========================= */
+.gori-image-wrapper {
+  position: relative;        /* anchor for ::before circle */
+  text-align: center;
+  padding: 0.5rem;
+  z-index: 1;                /* keep image/caption above circle */
+}
+
+/* Decorative orange circle behind the image (perfect circle) */
+.gori-image-wrapper::before {
+  content: "";
+  position: absolute;
+  width: clamp(280px, 65vw, 540px);
+  height: clamp(280px, 65vw, 540px);
+  border-radius: 50%;
+  background: #d4732a;
+
+  /* a touch cut off at the top, more off on the left */
+  top: clamp(-60px, -6vw, -40px);
+  left: clamp(-160px, -10vw, -80px);
+
+  z-index: 0;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.25));
+}
+
+.gori-image {
+  position: relative;        /* sits above ::before */
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;          /* balanced default */
+  height: auto;
+  border-radius: 0.5em;
+}
+
+.gori-image-caption {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #ccc;
+  font-family: var(--font-archivo);
+}
+
+/* =========================
+   TEXT SIDE
+   ========================= */
+.gori-text-wrapper {
+  max-width: 65ch;           /* universal readability cap */
+  width: 100%;
+}
+
+.gori-title {
+  font-family: var(--font-dellarespira);
+  font-size: clamp(1.6rem, 6vw, 2.6rem); /* larger on small + mid screens */
+  color: #f5f5dc;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.gori-text-content {
+  font-family: var(--font-archivo);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  color: #f5f5dc;
+  line-height: 1.65;
+  text-align: justify;
+  overflow-wrap: anywhere;    /* protects against right cut-off */
+  hyphens: auto;
+  /* gentle inner margins on small & mid widths */
+  margin-inline: clamp(0px, 2vw, 24px);
+}
+
+/* =========================
+   PHONE TUNING (<= 600px)
+   ========================= */
+@media (max-width: 600px) {
+  .gori-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    margin-top: 0.25em;
+  }
+
+  .gori-image {
+    max-width: 260px;        /* make ellipse more prominent on phones */
+  }
+
+  .gori-image-wrapper::before {
+    width: clamp(260px, 75vw, 420px);
+    height: clamp(260px, 75vw, 420px);
+    top: -60px;              /* slight top cutoff */
+    left: -160px;            /* stronger left cutoff */
+  }
+}
+
+/* =========================
+   TABLET / SMALL-LAPTOP
+   (stay stacked longer to avoid squeeze)
+   601px – 1199px
+   ========================= */
+@media (min-width: 601px) and (max-width: 1199px) {
+  .gori-wrapper {
+    /* still stacked, just better gutters & spacing */
+    gap: 2em;
+    padding: clamp(20px, 5vw, 40px);
+  }
+
+  .gori-image {
+    max-width: 320px;        /* balance portrait vs circle */
+  }
+
+  .gori-image-wrapper::before {
+    width: clamp(300px, 50vw, 480px);
+    height: clamp(300px, 50vw, 480px);
+    top: clamp(-48px, -5vw, -28px);
+    left: clamp(-120px, -8vw, -72px);
+  }
+
+  .gori-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .gori-text-content {
+    margin-inline: clamp(8px, 3vw, 32px);
+    line-height: 1.7;
+  }
+}
+
+/* =========================
+   LARGE DESKTOP (go 2-column later)
+   1200px+
+   ========================= */
+@media (min-width: 1200px) {
+  .gori-wrapper {
+    /* predictable columns + gutters */
+    display: grid;
+    /* gutter | image | gap | text | gutter */
+    grid-template-columns:
+      minmax(24px, 6vw)
+      minmax(360px, 420px)
+      clamp(24px, 3.5vw, 40px)
+      minmax(0, 1fr)
+      minmax(24px, 6vw);
+    align-items: start;
+    column-gap: 0;
+    row-gap: 1.5em;
+    padding: 0;               /* gutters are grid columns now */
+    max-width: min(100%, 1200px);
+    margin: 0 auto;
+  }
+
+  .gori-image-wrapper { grid-column: 2; text-align: right; padding-right: 0; }
+  .gori-text-wrapper  { grid-column: 4; max-width: 70ch; text-align: left; }
+  .gori-title         { text-align: left; }
+
+  .gori-image { max-width: 400px; }
+
+  .gori-image-wrapper::before {
+    width: clamp(360px, 32vw, 560px);
+    height: clamp(360px, 32vw, 560px);
+    top: clamp(-60px, -5vw, -40px);
+    left: clamp(-140px, -8vw, -80px);
+  }
+}
+
+/* =========================
+   ULTRA-WIDE POLISH (1400px+)
+   ========================= */
+@media (min-width: 1400px) {
+  .gori-wrapper { padding: 2em 5vw; }
+}
+
+
+
+

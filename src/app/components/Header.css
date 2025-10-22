@@ -15,7 +15,6 @@ body {
 
 .header-title {
   font-family: var(--font-proxima-nova);
-  font-weight: 700;
   transform: translateX(-0.1rem);
   word-spacing: 0.2rem;
   font-size: clamp(2rem, 7vw, 5rem);
@@ -46,12 +45,17 @@ body {
 }
 
 @media (max-width: 640px) {
-  .header-image-wrapper { 
-    align-self: center;
+  .header-title {
+    font-size: clamp(2.4rem, 9vw, 3.6rem); /* ⬅️ larger on mobile */
+    line-height: 1.1;
   }
 
-  .header-wrapper {
-    margin: 2rem 2rem 0rem 2rem;
+  .header-subtitle {
+    font-size: clamp(1.3rem, 5vw, 2rem); /* ⬅️ larger subtitle */
+  }
+
+  .header-image-wrapper {
+    max-width: 90%; /* slightly smaller image for better proportion */
   }
 }
 

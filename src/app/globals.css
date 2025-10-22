@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
 
-  --background: #f5f5dc;
+  --background: #ffffff;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #f5f5dc;
+    --background: #ffffff;
     --foreground: #171717;
   }
 }
@@ -18,4 +18,51 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
+  scroll-snap-type: y mandatory;  /* or 'proximity' for gentler behavior */
 }
+
+/* Smooth anchor scrolling (respects reduced motion) */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}
+
+/* If you have a fixed header, set its height here */
+:root { --header-h: 64px; }
+
+/* Let anchors stop below a fixed header */
+.section {
+  /* Fill the visible viewport (new units handle mobile chrome/safari bars) */
+  min-block-size: 100dvh;      /* modern */
+  min-height: 100svh;          /* fallback */
+  /* Old fallback (optional): min-height: 100vh; */
+
+  /* Center content nicely */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Padding so content isn’t glued to edges */
+  padding: clamp(16px, 4vw, 48px);
+
+  /* Make sure every section acts like a “page” */
+  position: relative;
+  overflow: hidden;
+
+  /* If you have a fixed header, this makes anchor jumps land below it */
+  scroll-margin-top: var(--header-h);
+}
+
+.section {
+  scroll-snap-align: start;
+}
+
+/* Helpful: full-bleed background per section */
+.section--green  { background: #7fa46f; }
+.section--dark   { background: #2f2e2d; }
+.section--light  { background: #f5f5dc; color: #171717; }
+

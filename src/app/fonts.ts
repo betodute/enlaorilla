@@ -1,4 +1,4 @@
-import { Labrada, Archivo, Chivo, Faustina, MuseoModerno } from "next/font/google";
+import { Labrada, Archivo, Chivo, Faustina, MuseoModerno, Della_Respira } from "next/font/google";
 import Proximanova from "next/font/local";
 
 export const archivo = Archivo({
@@ -38,9 +38,17 @@ export const labrada = Labrada({
   display: "swap",
 });
 
+export const dellaRespira = Della_Respira({
+  subsets: ["latin"],
+  weight: "400",
+  style: "normal",
+  variable: "--font-dellarespira",
+  display: "swap",
+});
+
 export const proximanova = Proximanova({
   src: [
-    { path: "./fonts/proximanova_regular.woff2", weight: "400", style: "normal" }
+    { path: "./fontsdir/proximanova_regular.woff2", weight: "400", style: "normal" }
   ],
   variable: "--font-proxima-nova",
   display: "swap",
