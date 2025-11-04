@@ -1,182 +1,102 @@
-/* =========================
-   BASE RESET
-   ========================= */
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 0;
 }
 
-/* =========================
-   HERO SECTION (STICKY + SCROLL)
-   ========================= */
-.hero-simple {
+/* ===== Hero fills the viewport, padding included ===== */
+.hero {
   background: #fff;
-  min-height: 230svh;
-  /* keeps sticky around so next section can't crowd */
-  position: relative;
-}
-
-/* =========================
-   STICKY VIEWPORT
-   ========================= */
-.hero-simple__sticky {
-  position: sticky;
-  top: 0;
-  height: 100svh;
+  min-height: 100svh;                 /* full first screen */
+  padding: clamp(1rem, 5vw, 2rem) clamp(1rem, 6vw, 3rem);
+  box-sizing: border-box;             /* include padding INSIDE the 100svh */
   display: grid;
-  /* ⬇️ Give all remaining height to the image row */
-  grid-template-rows: auto minmax(0, 1fr);
-  align-content: start;
-  justify-items: start;
-
-  padding: clamp(2rem, 6vw, 3rem) clamp(2rem, 6vw, 3rem) clamp(1rem, 2vh, 1.5rem);
-
-  row-gap: clamp(4px, 1.4vh, 12px);
-  /* tighter so image sits closer */
-
-  --p: 0;
-  --slideX: 110vw;
-  --slideY: 60vh;
 }
 
-/* =========================
-   STATIC IMAGE (BOTTOM AREA)
-   ========================= */
-.hero-image-static {
-  grid-row: 2;
-  /* ⬇️ Stretch to fill the row; use flex to seat image at bottom nicely */
-  place-self: stretch center;
-  display: flex;
-  align-items: end;
-
-  width: min(92vw, 1100px);
-  /* ⬇️ No fixed max-height & no clipping; the row height controls the max */
-  max-height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.header-image {
-  display: block;
+/* Inner grid consumes full height */
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   width: 100%;
-  height: auto;
-  /* ⬇️ Scale to fit the row fully (no cropping) */
+  height: 100%;                       /* key: fill parent */
+  display: grid;
+  grid-template-rows: auto 1fr;       /* text + image area */
+  row-gap: clamp(0.5rem, 2vh, 1.25rem);
+}
+
+/* ===== Text ===== */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;            /* desktop left */
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-proxima-nova, system-ui, sans-serif);
+  font-weight: 600;
+  color: #213b52;
+  font-size: clamp(1.6rem, 8.5vw, 6.5rem);
+  line-height: 1;
+  white-space: nowrap;                /* never wrap */
+}
+
+.hero-subtitle {
+  margin: 0;
+  font-family: var(--font-chivo, system-ui, sans-serif);
+  color: #2f2e2d;
+  font-size: clamp(1.05rem, 3.5vw, 1.9rem);
+  line-height: 1.2;
+}
+
+/* ===== Image area uses all remaining space ===== */
+.hero-image {
+  min-height: 0;                      /* allow shrinking within the grid */
+  display: grid;
+  place-items: center;                /* always centered */
+  overflow: hidden;                   /* avoid accidental overflow */
+}
+
+/* Keep entire image visible inside remaining space */
+.header-image {
   max-height: 100%;
-  object-fit: contain;
+  max-width: 100%;
+  width: auto;                        /* avoid width forcing extra height */
+  height: auto;                       /* pair with contain behavior */
+  object-fit: contain;                /* no cropping */
+  display: block;
   border-radius: 8px;
 }
 
-.text-block,
-.hero-image-static {
-  width: min(92vw, 1100px);
-  margin-inline: auto;
-  /* hard center */
-}
-
-/* =========================
-   TEXT BLOCK (TOP AREA)
-   ========================= */
-.text-block {
-  grid-row: 1;
-  z-index: 1;
-  display: grid;
-  gap: clamp(6px, 1.4vh, 12px);
-  align-content: start;
-  max-width: min(92vw, 1100px);
-}
-
-/* =========================
-   TITLE & SUBTITLE STYLES
-   ========================= */
-.title-line,
-.subtitle-line {
-  display: inline-flex;
-  align-items: baseline;
-  white-space: nowrap;
-  overflow: hidden;
-  text-align: left;
-}
-
-/* Title: less bold, normal spacing */
-.title-line {
-  font-family: var(--font-proxima-nova);
-  font-weight: 600;
-  color: #213b52;
-  font-size: clamp(2.6rem, 11vw, 8rem);
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-/* Subtitle: starts wide word spacing → normal */
-.subtitle-line {
-  font-family: var(--font-chivo);
-  color: #2f2e2d;
-  font-size: clamp(1.1rem, 4vw, 1.8rem);
-  line-height: 1.1;
-  word-spacing: calc(0.8em * (1 - var(--p)));
-}
-
-/* =========================
-   LETTER ANIMATION
-   ========================= */
-.char {
-  display: inline-block;
-}
-
-.char--space {
-  display: inline-block;
-}
-
-/* Anchors (E, L, O) never move — visible at page load */
-.title-line .char--anchor {
-  transform: none;
-}
-
-/* Non-anchor letters fly in from edges to their natural positions */
-.title-line .char--w0:not(.char--anchor) {
-  transform: translateX(calc((1 - var(--p)) * var(--slideX)));
-  will-change: transform;
-}
-
-.title-line .char--w1:not(.char--anchor) {
-  transform: translateY(calc((1 - var(--p)) * var(--slideY)));
-  will-change: transform;
-}
-
-.title-line .char--w2:not(.char--anchor) {
-  transform: translateX(calc((1 - var(--p)) * var(--slideX) * -1));
-  will-change: transform;
-}
-
-/* =========================
-   SCROLL SPACER
-   ========================= */
-.after-hero-spacer {
-  min-height: 120svh;
-}
-
-/* =========================
-   MOBILE TWEAKS
-   ========================= */
+/* ===== Mobile: center text, maintain fit ===== */
 @media (max-width: 640px) {
-  .hero-simple__sticky {
-    padding: clamp(1.5rem, 6vw, 2rem) clamp(1.5rem, 6vw, 2rem) clamp(0.75rem, 1.5vh, 1rem);
-    row-gap: clamp(4px, 1vh, 10px);
-    --slideX: 120vw;
-    --slideY: 65vh;
+  .hero {
+    padding: clamp(0.75rem, 4vw, 1.5rem) clamp(1rem, 6vw, 2rem);
   }
 
-  .hero-image-static {
-    /* still stretches; row height limits it */
-    width: min(94vw, 720px);
+  .hero-inner {
+    row-gap: clamp(0.5rem, 2.5vh, 1rem);
   }
 
-  .title-line {
-    font-size: clamp(2rem, 15vw, 5.2rem);
+  .hero-text {
+    align-items: center;              /* center text only on mobile */
+    text-align: center;
   }
 
-  .subtitle-line {
-    font-size: clamp(1rem, 5vw, 1.4rem);
+  .hero-title {
+    font-size: clamp(1.6rem, 11vw, 4.2rem);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 5vw, 1.5rem);
   }
 }
+
+
+

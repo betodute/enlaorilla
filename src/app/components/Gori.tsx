@@ -23,7 +23,11 @@ export const Gori = () => {
             Elizabeth Gori
           </div>
           <div className='gori-text-content'>
-            Elizabeth Gori is a poet and writer whose work explores themes of identity, marginality, and the human experience. Her poetry is known for its emotional depth and lyrical beauty, often drawing from personal experiences and cultural heritage. Gori has published several collections of poetry and has been recognized for her contributions to contemporary literature.
+            Poeta y escritora, ganó un concurso de Invocaciones con un cuentito que parecía brujería o un hechizo que parecía microrrelato. Vive en una pandilla de dos humanos, cuatro perros y cuatro amados fantasmas; uno de ellos grande, color naranja. Tiene formación en Lengua y Literatura, con un doctorado en Estudios Socioculturales. Se hizo acreedora de la Beca del Programa de Estímulo a la Creación y Desarrollo Artístico (PECDA, antes FECA) en México en tres emisiones, por los poemarios: Laberinto de niebla (2005), Poemas animales (2011) y, actualmente, por el poemario En la orilla. Poética de la marginalidad. Ganadora del Premio Dolores Castro de poesía 2023, con el libro Pandilla punk (IMAC, 2023).
+
+            <p>
+              Es fundadora del Colectivo Bestiario Mínimo y editora de la Revista Imagisaurio.
+            </p>
           </div>
         </div>
       </div>

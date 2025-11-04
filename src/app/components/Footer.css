@@ -6,24 +6,136 @@
   width: 100%;
 }
 
+/* === Text content === */
 .footer-content {
   text-align: center;
   font-size: 1.3em;
   color: #f5f5dc;
-  margin: 2em 1em 1em 1em;
+  padding: 1em 2em;
+  margin: 2em 1em 1.5em 1em;
   font-family: var(--font-dellarespira);
 }
 
-.footer-content-beto {
+/* === Federal logo card === */
+.footer-content-official {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* spacing + visible dark edges */
+  margin: 0.75em 2em;
+  padding: 1.2em;
+  width: calc(100% - 4em);
+
+  /* 👇 enable zoom effect without changing card size */
+  overflow: hidden;
+}
+
+.footer-content-official .footer-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+
+  /* 👇 zoom-in effect */
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+/* === State logo card === */
+.footer-content-official-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  margin: 0.75em 2em;
+  padding: 1.2em;
+  width: calc(100% - 4em);
+}
+
+.footer-content-official-state .footer-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 70%;  /* slightly smaller than federal logo */
+  margin: 0 auto;
+  opacity: 0.98;
+}
+
+/* == Gori credit === */
+
+.footer-content-gori {
   text-align: center;
-  font-size: 1em;
-  margin: 2em 0em;
+  font-size: 1.2em;
+  margin: 2em 0;
   color: #f5f5dc;
   font-family: var(--font-archivo);
 }
+
+/* === Developer credit === */
+.footer-content-beto {
+  display: none;
+  text-align: center;
+  font-size: 1em;
+  margin: 2em 0;
+  color: #f5f5dc;
+  font-family: var(--font-archivo);
+}
+
+
 
 .footer-content-link {
   color: #d4732a;
   border-bottom: 1px solid #f5f5dc40;
   text-decoration: none;
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 1024px) {
+  .footer-content-official,
+  .footer-content-official-state {
+    margin: 0.75em 1.5em;
+    width: calc(100% - 3em);
+  }
+
+  .footer-logo {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-content-official,
+  .footer-content-official-state {
+    margin: 0.5em 1em;
+    width: calc(100% - 2em);
+    padding: 1em;
+  }
+
+  .footer-content-official .footer-logo {
+    transform: scale(1.2); /* slightly stronger zoom on smaller screens */
+  }
+
+  .footer-content-official-state .footer-logo {
+    max-width: 75%;
+  }
+}
+
+.footer-content-official .footer-logo,
+.footer-content-official-state .footer-logo {
+  transition: transform 0.3s ease;
+}
+
+.footer-content-official:hover .footer-logo {
+  transform: scale(1.2);
+}
+
+.footer-content-official-state:hover .footer-logo {
+  transform: scale(1.05);
 }
