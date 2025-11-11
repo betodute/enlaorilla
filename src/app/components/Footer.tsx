@@ -6,53 +6,70 @@ import "./Footer.css";
 
 export const Footer = () => {
   return (
-    <div className="footer-wrapper">
-      <div className="footer-content">
-        Este libro/presentación/conferencia (según sea el caso) fue realizado con el apoyo del Sistema de Apoyos a la Creación y Proyectos Culturales, a través del PECDA Aguascalientes, emisión 2025.
-      </div>
+    <footer id="official" className="footer">
+      <div className="footer-inner">
+        <p className="footer-lede">
+          Este proyecto fue realizado con el apoyo del Sistema de Apoyos a la
+          Creación y Proyectos Culturales, a través del PECDA Aguascalientes,
+          emisión 2025.
+        </p>
 
-      {/* Federal card (zoomed) */}
-      <div className="footer-content-official">
-        <Image
-          src="/images/official-logo-gov.webp"
-          alt="PECDA (federal) logo"
-          width={1200}        // use your intrinsic width if you know it
-          height={400}        // use your intrinsic height if you know it
-          priority
-          className="footer-logo"
-          style={{ width: "100%", height: "auto" }}  // responsive
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 600px"
-        />
-      </div>
+        {/* 🌿 Unified white card for logos + separators */}
+        <div className="footer-card">
 
-      <div className="footer-content-official-state">
-        <Image
-          src="/images/official-logo-state-two.png"
-          alt="PECDA (state) logo"
-          width={1200}
-          height={400}
-          className="footer-logo"
-          style={{ width: "100%", height: "auto" }}
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 600px"
-        />
-      </div>
+          <div className="footer-row footer-fed">
+            <Image
+              src="/images/official-logo-gov.webp"
+              alt="Logotipo PECDA (federal)"
+              width={1200}
+              height={400}
+              loading="lazy"
+              className="footer-logo"
+              sizes="(max-width: 640px) 92vw, 480px"
+              style={{ maxWidth: "640px" }}
+            />
+          </div>
 
-      {/* State card (smaller inside same-size card) */}
-      <div className="footer-content-official-state">
-        <Image
-          src="/images/official-logo-state.webp"
-          alt="PECDA (state) logo"
-          width={1200}
-          height={400}
-          className="footer-logo"
-          style={{ width: "100%", height: "auto" }}
-          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 600px"
-        />
-      </div>
+          <div className="footer-sep footer-sep--green" aria-hidden="true">
+            <span className="dot" />
+            <span className="dot" />
+            <span className="dot" />
+          </div>
 
-      <div className="footer-content-gori">
-        Gori | 2025
+          <div className="footer-row">
+            <Image
+              src="/images/official-logo-state-two.png"
+              alt="Logotipo PECDA (estatal Aguascalientes) A"
+              width={1200}
+              height={400}
+              loading="lazy"
+              className="footer-logo"
+              sizes="(max-width: 640px) 92vw, 480px"
+            />
+          </div>
+
+          <div className="footer-sep footer-sep--red" aria-hidden="true">
+            <span className="dot" />
+            <span className="dot" />
+            <span className="dot" />
+          </div>
+
+          <div className="footer-row footer-last">
+            <Image
+              src="/images/official-logo-state.webp"
+              alt="Logotipo PECDA (estatal Aguascalientes) B"
+              width={1200}
+              height={400}
+              loading="lazy"
+              className="footer-logo"
+              sizes="(max-width: 640px) 92vw, 480px"
+            />
+          </div>
+
+        </div>
+
+        <p className="footer-credit">Dirigido por Elizabeth Gori — 2025</p>
       </div>
-    </div>
+    </footer>
   );
 };

@@ -1,0 +1,254 @@
+/* =========================
+   BASE RESET
+   ========================= */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   HERO SECTION (STICKY + SCROLL)
+   ========================= */
+.hero-simple {
+  background: #fff;
+  /* CHANGE ➊: lengthen sticky time after animation completes */
+  min-height: 280svh;
+  /* was 230svh */
+  position: relative;
+}
+
+/* =========================
+   STICKY VIEWPORT
+   ========================= */
+.hero-simple__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* row 1 = text; row 2 fills the rest */
+  align-content: stretch;
+  /* stretch rows to full height */
+  justify-items: center;
+  /* center items horizontally */
+
+  /* top | right/left | bottom */
+  padding: clamp(2rem, 6vw, 3rem) clamp(2rem, 6vw, 3rem) clamp(1rem, 2vh, 1.5rem);
+
+  row-gap: clamp(4px, 1.4vh, 12px);
+
+  --p: 0;
+  --slideX: 110vw;
+  --slideY: 60vh;
+}
+
+/* =========================
+   TEXT BLOCK (TOP AREA)
+   ========================= */
+.text-block {
+  grid-row: 1;
+  align-self: start;
+  /* pin to top */
+  width: min(92vw, 1100px);
+  margin-inline: auto;
+  z-index: 2;
+
+  display: grid;
+  gap: clamp(6px, 1.4vh, 12px);
+  align-content: start;
+}
+
+/* Title & subtitle containers */
+.title-line,
+.subtitle-line {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* Title: less bold, normal spacing */
+.title-line {
+  font-family: var(--font-proxima-nova);
+  font-weight: 600;
+  color: #213b52;
+  font-size: clamp(2.6rem, 11vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+/* Subtitle: starts wide word spacing → normal */
+.subtitle-line {
+  font-family: var(--font-chivo);
+  color: #2f2e2d;
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  line-height: 1.1;
+  word-spacing: calc(0.8em * (1 - var(--p)));
+}
+
+/* =========================
+   STATIC IMAGE (BOTTOM AREA)
+   ========================= */
+.hero-image-static {
+  grid-row: 2;
+  align-self: end;
+  /* pin to bottom */
+  justify-self: center;
+  /* hard center horizontally */
+
+  display: flex;
+  align-items: center;
+  /* center within its row */
+
+  width: min(92vw, 1100px);
+  height: 100%;
+  /* fill the row's available height */
+  max-height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  margin-inline: auto;
+  /* neutralize any padding asymmetry */
+}
+
+.header-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* fully visible, no crop */
+  border-radius: 8px;
+}
+
+/* =========================
+   LETTER ANIMATION
+   ========================= */
+.char {
+  display: inline-block;
+}
+
+.char--space {
+  display: inline-block;
+}
+
+/* Anchors (E, L, O) never move — visible at page load */
+.title-line .char--anchor {
+  transform: none;
+}
+
+/* Non-anchor letters fly in from edges to their natural positions */
+.title-line .char--w0:not(.char--anchor) {
+  transform: translateX(calc((1 - var(--p)) * var(--slideX)));
+  will-change: transform;
+}
+
+.title-line .char--w1:not(.char--anchor) {
+  transform: translateY(calc((1 - var(--p)) * var(--slideY)));
+  will-change: transform;
+}
+
+.title-line .char--w2:not(.char--anchor) {
+  transform: translateX(calc((1 - var(--p)) * var(--slideX) * -1));
+  will-change: transform;
+}
+
+/* =========================
+   SCROLL SPACER
+   ========================= */
+.after-hero-spacer {
+  min-height: 120svh;
+}
+
+/* =========================
+   DESKTOP SPACING FIX FOR LINE BREAK
+   ========================= */
+.title-line .char--break {
+  display: inline-block;
+  width: 0.5ch;
+  /* approx. a normal space width */
+  height: 0;
+  /* no extra line height */
+}
+
+/* optional safety: keep normal spaces inline */
+.title-line .char--space {
+  display: inline;
+  width: auto;
+  height: 0;
+}
+
+/* =========================
+   MOBILE TWEAKS
+   ========================= */
+@media (max-width: 640px) {
+  .hero-simple__sticky {
+    padding: clamp(1.25rem, 5vw, 1.75rem) clamp(1.25rem, 6vw, 2rem) clamp(0.5rem, 1vh, 0.75rem);
+    row-gap: clamp(0px, 0.8vh, 6px);
+    --slideX: 120vw;
+    --slideY: 65vh;
+  }
+
+  /* Two lines: “EN LA” on first, “ORILLA” on second */
+  .title-line {
+    display: block;
+    white-space: normal;
+    line-height: 0.95;
+  }
+
+  /* Make every space inline except the one after “LA” */
+  .title-line .char--space {
+    display: inline;
+    width: auto;
+    height: 0;
+  }
+
+  /* force the last space (before ORILLA) into a line break */
+  .title-line .char--space:last-of-type {
+    display: block;
+    width: 100%;
+    height: clamp(4px, 1.2vh, 10px);
+  }
+
+  .title-line .char--break {
+    display: block;
+    /* creates a line break */
+    width: 100%;
+    height: clamp(4px, 1.2vh, 10px);
+    /* vertical gap between EN LA and ORILLA */
+  }
+
+  .text-block {
+    gap: clamp(2px, 0.8vh, 6px);
+    width: min(94vw, 720px);
+  }
+
+  .hero-image-static {
+    align-self: start;
+    justify-self: center;
+    width: min(94vw, 720px);
+    height: auto;
+    max-height: 100%;
+    margin-inline: auto;
+  }
+
+  .title-line {
+    font-size: clamp(2rem, 15vw, 5.2rem);
+  }
+
+  .subtitle-line {
+    font-size: clamp(0.95rem, 5vw, 1.3rem);
+  }
+}
+
+/* =========================
+   LARGE DESKTOP POLISH
+   ========================= */
+@media (min-width: 1200px) {
+  .hero-simple__sticky {
+    row-gap: clamp(12px, 1.5vh, 24px);
+    /* a touch more breathing space */
+  }
+}

@@ -1,0 +1,23 @@
+.contact-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 6rem);
+  background: #faf9ef;
+  border-top: 8px solid #7FA46F;
+  box-shadow: inset 0 0 0 4px #7FA46F33;
+} 
+
+.contact-content {
+  min-height: 100vh;
+  margin: 1em;
+  border-radius: 1em;
+}
+
+.contact-title {
+  font-family: var(--font-museo);
+  font-size: 2em;
+  color: #d4732a;
+  text-align: center;
+  margin-top: 1em;
+}

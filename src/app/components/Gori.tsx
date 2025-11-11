@@ -4,7 +4,7 @@ import './Gori.css'
 
 export const Gori = () => {
   return (
-    <section className='section gori-section section--green'>
+    <section id='gori' className='section gori-section section--green'>
       <div className='gori-wrapper'>
         <div className='gori-image-wrapper'>
           <Image

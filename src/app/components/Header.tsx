@@ -4,7 +4,7 @@ import "./Header.css";
 
 export const Header = () => {
   return (
-    <section className="hero">
+    <section id='inicio' className="hero">
       <div className="hero-inner">
         <div className="hero-text">
           <h1 className="hero-title" aria-label="EN LA ORILLA">

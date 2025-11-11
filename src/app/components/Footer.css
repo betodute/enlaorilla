@@ -1,141 +1,115 @@
-.footer-wrapper {
+/* ===== Footer: full-width background, centered content ===== */
+.footer {
+  width: 100%;
+  background-color: #2f2e2d; /* dark background spans edge-to-edge */
+  color: #f2f2f2;
+  border-top: #d4732a 8px solid;
+  box-shadow: inset 0 0 0 4px #7FA46F33;
+}
+
+.footer-inner {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: clamp(1rem, 2vw, 1.75rem) clamp(1rem, 4vw, 2rem);
+  text-align: center;
+  font-family: var(--font-archivo, system-ui, sans-serif);
+}
+
+/* ===== Intro paragraph ===== */
+.footer-lede {
+  margin: 1em 0 2em 0;
+  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* ===== Unified white card for all logos/separators ===== */
+.footer-card {
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 1.5em 1em;
+  color: #111;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #2f2e2d;
+  gap: 1.2em; /* even vertical rhythm for logos + separators */
+}
+
+.footer-fed {
+  margin-top: -.5em;
+  margin-bottom: -.8em;
+}
+
+.footer-last {
+  margin-bottom: .5em;
+}
+
+/* ===== Single-column rows (logos) ===== */
+.footer-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Logo sizing — compact on desktop, smaller on phones */
+.footer-logo {
   width: 100%;
-}
-
-/* === Text content === */
-.footer-content {
-  text-align: center;
-  font-size: 1.3em;
-  color: #f5f5dc;
-  padding: 1em 2em;
-  margin: 2em 1em 1.5em 1em;
-  font-family: var(--font-dellarespira);
-}
-
-/* === Federal logo card === */
-.footer-content-official {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-  /* spacing + visible dark edges */
-  margin: 0.75em 2em;
-  padding: 1.2em;
-  width: calc(100% - 4em);
-
-  /* 👇 enable zoom effect without changing card size */
-  overflow: hidden;
-}
-
-.footer-content-official .footer-logo {
-  display: block;
-  width: auto;
   height: auto;
-  max-width: 100%;
-  margin: 0 auto;
-
-  /* 👇 zoom-in effect */
-  transform: scale(1.15);
-  transform-origin: center;
-}
-
-/* === State logo card === */
-.footer-content-official-state {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-  margin: 0.75em 2em;
-  padding: 1.2em;
-  width: calc(100% - 4em);
-}
-
-.footer-content-official-state .footer-logo {
+  max-width: 360px;
   display: block;
-  width: auto;
-  height: auto;
-  max-width: 70%;  /* slightly smaller than federal logo */
-  margin: 0 auto;
-  opacity: 0.98;
 }
 
-/* == Gori credit === */
-
-.footer-content-gori {
-  text-align: center;
-  font-size: 1.2em;
-  margin: 2em 0;
-  color: #f5f5dc;
-  font-family: var(--font-archivo);
+/* Make first logo slightly larger */
+.footer-row:first-of-type .footer-logo {
+  max-width: 640px;
 }
 
-/* === Developer credit === */
-.footer-content-beto {
-  display: none;
-  text-align: center;
-  font-size: 1em;
-  margin: 2em 0;
-  color: #f5f5dc;
-  font-family: var(--font-archivo);
+/* ===== Separators (three colored dots) ===== */
+.footer-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 1em
 }
 
-
-
-.footer-content-link {
-  color: #d4732a;
-  border-bottom: 1px solid #f5f5dc40;
-  text-decoration: none;
+.footer-sep .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.95;
 }
 
-/* === Responsive tweaks === */
-@media (max-width: 1024px) {
-  .footer-content-official,
-  .footer-content-official-state {
-    margin: 0.75em 1.5em;
-    width: calc(100% - 3em);
-  }
+/* Accent colors */
+.footer-sep--green { color: #7FA46F; }
+.footer-sep--red   { color: #a63a24; }
 
-  .footer-logo {
-    max-width: 480px;
-  }
+/* ===== Credit line ===== */
+.footer-credit {
+  margin-top: 3em;
+  font-size: 0.95rem;
+  opacity: 0.9;
 }
 
+/* ===== Responsive tweaks ===== */
 @media (max-width: 640px) {
-  .footer-content-official,
-  .footer-content-official-state {
-    margin: 0.5em 1em;
-    width: calc(100% - 2em);
-    padding: 1em;
+  .footer-inner { padding-top: 0.75rem; }
+  .footer-card { padding: 1.5em 0.5em; border-radius: 30px; }
+  .footer-logo { max-width: 280px; }
+  .footer-row:first-of-type .footer-logo { max-width: 400px; }
+}
+
+/* ===== Optional: dark-mode refinement (keeps legibility) ===== */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #1e1e1e;
+    color: #eaeaea;
   }
-
-  .footer-content-official .footer-logo {
-    transform: scale(1.2); /* slightly stronger zoom on smaller screens */
-  }
-
-  .footer-content-official-state .footer-logo {
-    max-width: 75%;
-  }
+  .footer-sep--green { color: #7FA46F; }
+  .footer-sep--red   { color: #a63a24; }
 }
 
-.footer-content-official .footer-logo,
-.footer-content-official-state .footer-logo {
-  transition: transform 0.3s ease;
-}
 
-.footer-content-official:hover .footer-logo {
-  transform: scale(1.2);
-}
 
-.footer-content-official-state:hover .footer-logo {
-  transform: scale(1.05);
-}
+
+
