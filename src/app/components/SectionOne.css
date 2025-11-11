@@ -5,24 +5,75 @@
   justify-content: center;
   background: #f5f5dc;
   border-top: 8px solid #d4732a;
-  box-shadow: inset 0 0 0 4px #7FA46F33;
+  box-shadow: inset 0 0 0 4px #7fa46f33;
+  padding-bottom: 3em;
 }
 
 .section-one-content {
   min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2em;
 }
 
 .section-one-title {
   font-family: var(--font-dellarespira);
   font-size: 2em;
   margin-top: 1.5em;
+  margin-bottom: 1em;
   color: black;
   text-align: center;
 }
 
-.images-wrapper {
+/* === Grid layout === */
+.images-grid {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 2em;
-  margin: 2em 0;
+  margin-top: 2em;
+
+  /* Centers items AND the last row when it has < full width */
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Each image + text */
+.image-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* Desktop: target ~3 per row while allowing wrap */
+  flex: 0 1 300px;   /* basis ≈ card width; tweak 340–420px to taste */
+  max-width: 420px;  /* prevent overstretching on huge screens */
+}
+
+.image-item {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Caption */
+.image-caption {
+  margin-top: 0.8em;
+  font-size: 1.3em;
+  color: #333;
+  max-width: 90%;
+}
+
+
+/* Tablet & phone: 1 per row, centered */
+@media (max-width: 1024px) {
+  .image-card {
+    flex: 1 1 100%;
+    max-width: 520px;   /* wider single column, still centered */
+  }
+}
+
+/* Small phones: slightly softer corners if you like */
+@media (max-width: 640px) {
+  .image-item { border-radius: 8px; }
 }
