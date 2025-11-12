@@ -4,11 +4,11 @@ import "./Header.css";
 
 export const Header = () => {
   return (
-    <section id='inicio' className="hero">
+    <section id="inicio" className="hero">
       <div className="hero-inner">
         <div className="hero-text">
           <h1 className="hero-title" aria-label="EN LA ORILLA">
-            EN&nbsp;LA&nbsp;ORILLA
+            EN LA ORILLA
           </h1>
           <p className="hero-subtitle">poética de la marginalidad</p>
         </div>
@@ -27,6 +27,7 @@ export const Header = () => {
     </section>
   );
 };
+
 
 
 

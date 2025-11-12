@@ -41,7 +41,7 @@
   line-height: 1.4;
   margin-bottom: 3rem;
   border-left: 8px solid #a63a24;
-  padding-left: 2.5rem; /* spacious on large screens */
+  padding-left: 2.5rem;
 }
 
 /* === Text === */
@@ -52,18 +52,22 @@
   line-height: 1.75;
   text-align: justify;
   border-left: 5px solid #d4732a;
-  padding-left: 2.5rem; /* keep space from border only on large screens */
+  padding-left: 2.5rem;
 }
 
 /* === Responsive: Small screens === */
 @media (max-width: 640px) {
   .about-wrapper {
     min-height: 100svh;
-    align-items: flex-start;
+    display: flex;
+    align-items: center;        /* ⬅️ center vertically */
+    justify-content: center;    /* ⬅️ center horizontally */
     padding: clamp(2rem, 6vw, 3rem);
   }
 
   .about-content {
+    width: 100%;
+    max-width: 90%;             /* ⬅️ keep side margins */
     padding: 1.5rem;
   }
 
@@ -72,7 +76,7 @@
     text-align: center;
     border-left: none;
     border-bottom: 4px solid #a63a24;
-    padding-left: 0;       /* 🔸 remove unnecessary left padding */
+    padding-left: 0;
     padding-bottom: 0.75rem;
     margin-bottom: 3rem;
   }
@@ -80,11 +84,15 @@
   .about-text {
     border-left: none;
     border-top: 3px solid #d4732a;
-    padding-left: 0;       /* 🔸 no extra left spacing */
+    padding-left: 0;
     padding-top: 1.25rem;
     margin-top: 1rem;
   }
 }
+
+
+
+
 
 
 

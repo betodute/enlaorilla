@@ -6,7 +6,7 @@ export const SectionOne = () => {
   return (
     <div id="textos" className="section-one-wrapper">
       <div className="section-one-content">
-        <div className="section-one-title">cartografías</div>
+        <div className="section-one-title">cartografías: a title for this section ?</div>
 
         <div className="images-grid">
           <div className="image-card">
