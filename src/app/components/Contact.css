@@ -39,16 +39,16 @@
 }
 
 .contact-title {
-  font-family: var(--font-proxima-nova, system-ui, sans-serif);
+  font-family: var(--font-dellarespira, serif);
   font-size: clamp(1.5rem, 3.6vw, 2.25rem);
-  color: #d4732a;
+  color: #213b52;
   margin: 0 0 0.5em 0;
 }
 
 .contact-subtitle {
-  font-family: var(--font-chivo, system-ui, sans-serif);
+  font-family: var(--font-dellarespira, serif);
   font-size: clamp(1rem, 2.6vw, 1.25rem);
-  color: #2f2e2d;
+  color: #213b52;
   opacity: 0.9;
   margin: 0;
 }

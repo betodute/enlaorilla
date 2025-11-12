@@ -4,8 +4,8 @@ import './Gori.css'
 
 export const Gori = () => {
   return (
-    <section id='gori' className='section gori-section section--green'>
-      <div className='gori-wrapper'>
+    <section className='section gori-section section--green'>
+      <div id='gori' className='gori-wrapper'>
         <div className='gori-image-wrapper'>
           <Image
             className='gori-image'
@@ -15,7 +15,6 @@ export const Gori = () => {
             height={600}
           />
           <div className='gori-image-caption'>
-            Foto por Photographer Face
           </div>
         </div>
         <div className='gori-text-wrapper'>

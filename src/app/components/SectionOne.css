@@ -9,6 +9,10 @@
   padding: 3em 1.5em; /* balanced all around */
 }
 
+.text-wrapper {
+  display: flex;
+}
+
 .section-one-content {
   min-height: 100vh;
   width: 100%;
@@ -17,7 +21,7 @@
 }
 
 .section-one-title {
-  font-family: var(--font-dellarespira);
+  font-family: var(--font-proxima-nova);
   font-size: 2em;
   margin-top: 1.5em;
   margin-bottom: 2em;
@@ -56,6 +60,7 @@
 
 .image-caption {
   margin-top: 1em;
+  font-family: var(--font-dellarespira);
   font-size: 1.3em;
   color: #333;
   max-width: 90%;

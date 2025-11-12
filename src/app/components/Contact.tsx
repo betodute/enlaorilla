@@ -4,15 +4,15 @@ import './Contact.css'
 
 export const Contact = () => {
   return (
-    <div id='contact' className='contact-wrapper'>
+    <div id='bitacora' className='contact-wrapper'>
       <div className='contact-content'>
 
         <div className='contact-text-wrapper'>
           <div className='contact-title'>
-            Exhibit: 001
+            Bitácora del proceso creativo
           </div>
           <div className='contact-subtitle'>
-            This is a subtitle.
+            Descarga el registro del proceso de escritura de poemario <a href="/pandilla-punk.pdf" download>aqui</a>.
           </div>
         </div>
 

@@ -1,77 +1,84 @@
-/* ===== Footer: full-width background, centered content ===== */
+/* ===== Footer: full viewport, more black space ===== */
 .footer {
   width: 100%;
-  background-color: #2f2e2d; /* dark background spans edge-to-edge */
+  min-height: 100svh;
+  background-color: #2f2e2d;
   color: #f2f2f2;
-  border-top: #d4732a 8px solid;
+  border-top: 8px solid #d4732a;
   box-shadow: inset 0 0 0 4px #7FA46F33;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Inner wrapper — vertical layout */
 .footer-inner {
   margin: 0 auto;
   max-width: 1000px;
-  padding: clamp(1rem, 2vw, 1.75rem) clamp(1rem, 4vw, 2rem);
+  width: 100%;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem); /* 🟢 More breathing room */
   text-align: center;
   font-family: var(--font-archivo, system-ui, sans-serif);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.2rem, 4vh, 2.5rem);
 }
 
-/* ===== Intro paragraph ===== */
+/* ===== Top text (lede) ===== */
 .footer-lede {
-  margin: 1em 0 2em 0;
-  font-size: clamp(1.2rem, 1.2vw, 1.5rem);
-  line-height: 1.5;
+  margin-bottom: 3rem;
+  padding: 0 clamp(0.5rem, 6vw, 3rem); /* 🟢 Adds side space */
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1.6;
   text-wrap: balance;
 }
 
-/* ===== Unified white card for all logos/separators ===== */
+/* ===== White card (logos area) ===== */
 .footer-card {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 50px;
-  padding: 1.5em 1em;
   color: #111;
+  flex: 0 0 auto;                /* 🟢 Shrink white card portion */
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(0.75rem, 2vw, 1rem);
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2em; /* even vertical rhythm for logos + separators */
+  justify-content: space-evenly;
+
+  gap: clamp(0.8rem, 1.6vh, 1.4rem);
+  max-height: 50vh;              /* 🟢 White area takes less vertical space */
 }
 
-.footer-fed {
-  margin-top: -.5em;
-  margin-bottom: -.8em;
-}
+.footer-fed { margin-top: -0.5em; margin-bottom: -0.8em; }
+.footer-last { margin-bottom: 0.5em; }
 
-.footer-last {
-  margin-bottom: .5em;
-}
-
-/* ===== Single-column rows (logos) ===== */
+/* Logo rows */
 .footer-row {
   display: flex;
   justify-content: center;
 }
-
-/* Logo sizing — compact on desktop, smaller on phones */
 .footer-logo {
   width: 100%;
   height: auto;
-  max-width: 360px;
+  max-width: 340px;
   display: block;
 }
-
-/* Make first logo slightly larger */
 .footer-row:first-of-type .footer-logo {
-  max-width: 640px;
+  max-width: 520px;
 }
 
-/* ===== Separators (three colored dots) ===== */
+/* Dots separators */
 .footer-sep {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 1em
+  padding: 0.5em 0;
 }
-
 .footer-sep .dot {
   width: 10px;
   height: 10px;
@@ -79,35 +86,34 @@
   background: currentColor;
   opacity: 0.95;
 }
-
-/* Accent colors */
 .footer-sep--green { color: #7FA46F; }
 .footer-sep--red   { color: #a63a24; }
 
-/* ===== Credit line ===== */
+/* Credit */
 .footer-credit {
-  margin-top: 3em;
+  margin: 0;
+  padding-top: 10em;
   font-size: 0.95rem;
   opacity: 0.9;
 }
 
-/* ===== Responsive tweaks ===== */
+/* ===== Responsive ===== */
 @media (max-width: 640px) {
-  .footer-inner { padding-top: 0.75rem; }
-  .footer-card { padding: 1.5em 0.5em; border-radius: 30px; }
-  .footer-logo { max-width: 280px; }
-  .footer-row:first-of-type .footer-logo { max-width: 400px; }
+  .footer-inner {
+    padding: clamp(2.5rem, 8vw, 4rem) clamp(1rem, 6vw, 2rem);
+    gap: 2rem;
+  }
+
+  .footer-card {
+    border-radius: 30px;
+    max-height: none;             /* 🟢 Let it flow naturally on mobile */
+    padding: 1.5rem 0.75rem;
+  }
+
+  .footer-logo { max-width: 260px; }
+  .footer-row:first-of-type .footer-logo { max-width: 360px; }
 }
 
-/* ===== Optional: dark-mode refinement (keeps legibility) ===== */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background-color: #1e1e1e;
-    color: #eaeaea;
-  }
-  .footer-sep--green { color: #7FA46F; }
-  .footer-sep--red   { color: #a63a24; }
-}
 
 
 
