@@ -6,7 +6,7 @@ import "./Footer.css";
 
 export const Footer = () => {
   return (
-    <footer id="official" className="footer">
+    <footer className="footer">
       <div className="footer-inner">
         <p className="footer-lede">
           Este proyecto fue realizado con el apoyo del Sistema de Apoyos a la
@@ -68,7 +68,8 @@ export const Footer = () => {
 
         </div>
 
-        <p className="footer-credit">Dirigido por Elizabeth Gori — 2025</p>
+        <p className="footer-credit">Dirigido por Elizabeth Gori 2025</p>
+        <p className="footer-beto">web dev <a className='beto-link' href='betodute.com'>betodute.com</a></p>
       </div>
     </footer>
   );

@@ -17,11 +17,73 @@
 }
 
 .brand {
-  font-weight: 900;
-  color: #213b52;
-  text-decoration: none;
-  margin-right: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* a bit bigger overall */
+  width: 2.4rem;
+  height: 2.4rem;
+
+  cursor: pointer;
+  font-size: 0; /* in case there's text inside */
+  flex-shrink: 0; /* don't let flexbox squeeze it */
 }
+
+/* the two squares */
+.brand::before,
+.brand::after {
+  content: "";
+  position: absolute;
+
+  /* ~25–30% bigger than before */
+  width: 1.3rem;
+  height: 1.3rem;
+
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+
+  border: 1px solid #a63a24;  /* adjust colors to your palette */
+}
+
+/* left square */
+.brand::before {
+  background: #a63a24;
+  animation: squareLeft 8s ease-in-out infinite;
+}
+
+/* right square */
+.brand::after {
+  background: transparent;
+  animation: squareRight 8s ease-in-out infinite;
+}
+
+/* animations: now they separate *slightly* */
+@keyframes squareLeft {
+  0%, 100% {
+    transform: translateX(-0.7rem); /* more distance to the left */
+  }
+  25%, 75% {
+    transform: translateX(0);       /* overlap in the center */
+  }
+  50% {
+    transform: translateX(0.7rem);  /* go to the right */
+  }
+}
+
+@keyframes squareRight {
+  0%, 100% {
+    transform: translateX(0.7rem);  /* start right */
+  }
+  25%, 75% {
+    transform: translateX(0);       /* overlap */
+  }
+  50% {
+    transform: translateX(-0.7rem); /* go to the left */
+  }
+}
+
 
 /* Inline links (desktop) */
 .static-links {
@@ -31,6 +93,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--font-proxima-nova, system-ui, sans-serif);
+  margin-left: auto; 
 }
 
 .static-links a {
@@ -60,6 +123,7 @@
   justify-content: flex-end;    /* sit to the right of the brand */
   gap: 0.5rem;
   margin: 0;
+  margin-left: auto;   
   padding: 0;
   font-family: var(--font-proxima-nova, system-ui, sans-serif);
 }

@@ -5,8 +5,8 @@ import Link from "next/link";
 import "./NavBar.css";
 
 export const NavBar: React.FC = () => {
-  const [open, setOpen] = useState(false);      // controls both menus' toggles
-  const [visible, setVisible] = useState(false); // floating menu visibility
+  const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const lastYRef = useRef<number>(0);
 
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -69,16 +69,37 @@ export const NavBar: React.FC = () => {
   return (
     <>
       {/* 1) TOP BAR (not sticky; scrolls away) */}
-      <nav id='navhome' className="navbar-static" aria-label="Main">
+      <nav id="navhome" className="navbar-static" aria-label="Main">
         <div className="navbar-static-inner">
-          <Link href="#inicio" className="brand">LOGO</Link>
+          {/* LEFT: animated logo */}
+          <Link href="#inicio" className="brand" />
 
+          {/* RIGHT: inline links */}
+          <ul
+            id={staticMenuId}
+            className={`static-links${open ? " open" : ""}`}
+          >
+            <li>
+              <Link href="#proyecto">Proyecto</Link>
+            </li>
+            <li>
+              <Link href="#videolecturas">Videolecturas</Link>
+            </li>
+            <li>
+              <Link href="#bitacora">Bitácora</Link>
+            </li>
+            <li>
+              <Link href="#gori">Gori</Link>
+            </li>
+          </ul>
+
+          {/* Toggle is currently hidden via CSS, but we keep it for future use */}
           <button
             className="static-toggle"
             aria-haspopup="menu"
             aria-expanded={open}
             aria-controls={staticMenuId}
-            onClick={() => setOpen(v => !v)}
+            onClick={() => setOpen((v) => !v)}
           >
             <span className="menu-dots" aria-hidden="true">
               <span className="mdot" />
@@ -87,19 +108,10 @@ export const NavBar: React.FC = () => {
             </span>
             <span className="visually-hidden">Abrir menú</span>
           </button>
-
-          {/* NOTE: “Inicio” removed here per request */}
-          <ul id={staticMenuId} className={`static-links${open ? " open" : ""}`}>
-            <li><Link href="#proyecto">Proyecto</Link></li>
-            <li><Link href="#textos">Videolecturas</Link></li>
-            <li><Link href="#bitacora">Bitácora</Link></li>
-            <li><Link href="#gori">Gori</Link></li>
-            <li><Link href="#official">Agradecimientos</Link></li>
-          </ul>
         </div>
       </nav>
 
-      {/* 2) FLOATING MINI MENU (appears when scrolling up) */}
+      {/* 2) FLOATING MINI MENU (unchanged) */}
       <nav className={wrapperClass} aria-label="Quick menu">
         <div className="navbar-content">
           <div className="navbar-menu">
@@ -110,7 +122,7 @@ export const NavBar: React.FC = () => {
               aria-expanded={open}
               aria-controls={menuId}
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              onClick={() => setOpen(v => !v)}
+              onClick={() => setOpen((v) => !v)}
             >
               <span className="menu-dots" aria-hidden="true">
                 <span className="mdot" />
@@ -125,24 +137,45 @@ export const NavBar: React.FC = () => {
               className={`dropdown${open ? " open" : ""}`}
               role="menu"
             >
-              {/* “Inicio” stays in the floating menu */}
-              <Link href="#navhome" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
+              <Link
+                href="#navhome"
+                className="dropdown-item"
+                role="menuitem"
+                onClick={() => setOpen(false)}
+              >
                 Inicio
               </Link>
-              <Link href="#textos" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
-                Textos
+              <Link
+                href="#videolecturas"
+                className="dropdown-item"
+                role="menuitem"
+                onClick={() => setOpen(false)}
+              >
+                Videolecturas
               </Link>
-              <Link href="#proyecto" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
+              <Link
+                href="#proyecto"
+                className="dropdown-item"
+                role="menuitem"
+                onClick={() => setOpen(false)}
+              >
                 Proyecto
               </Link>
-               <Link href="#bitacora" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
+              <Link
+                href="#bitacora"
+                className="dropdown-item"
+                role="menuitem"
+                onClick={() => setOpen(false)}
+              >
                 Bitácora
               </Link>
-              <Link href="#gori" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
+              <Link
+                href="#gori"
+                className="dropdown-item"
+                role="menuitem"
+                onClick={() => setOpen(false)}
+              >
                 Gori
-              </Link>
-              <Link href="#official" className="dropdown-item" role="menuitem" onClick={() => setOpen(false)}>
-                Agradecimientos
               </Link>
             </div>
           </div>
@@ -151,6 +184,7 @@ export const NavBar: React.FC = () => {
     </>
   );
 };
+
 
 
 

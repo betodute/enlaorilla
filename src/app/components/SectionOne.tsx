@@ -4,7 +4,7 @@ import "./SectionOne.css";
 
 export const SectionOne = () => {
   return (
-    <div id="textos" className="section-one-wrapper">
+    <div id="videolecturas" className="section-one-wrapper">
       <div className="section-one-content">
 
         <div className="section-one-title">
